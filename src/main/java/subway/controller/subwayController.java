@@ -48,6 +48,11 @@ public class subwayController {
     public void manageSubwayLines() {
         output.printMain();
         Main main = input.getMainChoice();
-        if(main != Main.QUIT) manageSubwayLines();
+        if (main == Main.PRINT_LINES) printLines();
+        if (main != Main.QUIT) manageSubwayLines();
+    }
+
+    private void printLines() {
+        output.printAllLines(LineRepository.lines());
     }
 }

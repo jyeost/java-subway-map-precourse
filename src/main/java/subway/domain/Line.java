@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Line {
-    private String name;
-    private List<Station> sections = new ArrayList<>();
+    private final String name;
+    private final List<Station> sections = new ArrayList<>();
 
     public Line(String name) {
         this.name = name;
@@ -25,8 +25,9 @@ public class Line {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Station station : sections) {
-            sb.append(station.getName());
+            sb.append("[INFO] " + station.getName() + System.lineSeparator());
         }
         return sb.toString();
     }
+
 }

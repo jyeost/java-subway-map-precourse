@@ -9,6 +9,7 @@ public enum Main {
 
     private final String key;
     private final String value;
+    private final static String mainErrorMsg = "[ERROR] 선택할 수 없는 기능입니다.";
 
     Main(String key, String value) {
         this.key = key;
@@ -28,15 +29,8 @@ public enum Main {
         for (Main main : Main.values()) {
             if (main.key.equals(userInput)) return main;
         }
-        throw new IllegalArgumentException(printErrorMsg());
+        throw new IllegalArgumentException(mainErrorMsg);
     }
 
-    private static String printErrorMsg() {
-        String print = "[ERROR] 기능선택은 [";
-        for (Main main : Main.values()) {
-            print += main.key + ", ";
-        }
-        print = print.substring(0, print.length() - 2) + "] 를 정확하게 입력해주세요.";
-        return print;
-    }
+
 }
