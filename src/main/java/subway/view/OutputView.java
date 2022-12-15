@@ -1,15 +1,13 @@
 package subway.view;
 
 import subway.domain.Line;
-import subway.domain.userInput.Main;
 
 import java.util.List;
 
 public class OutputView implements Output {
     @Override
-    public void printMain() {
-        System.out.print("## 메인 화면");
-        System.out.println(Main.print());
+    public void printFunctions(String print) {
+        System.out.println(print);
     }
 
     @Override
@@ -20,4 +18,6 @@ public class OutputView implements Output {
             System.out.println(line.toString());
         }
     }
+
+
 }

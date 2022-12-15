@@ -7,12 +7,16 @@ import java.util.Objects;
 
 public class StationRepository {
     private static final List<Station> stations = new ArrayList<>();
+    private static final String DUPLICATION_ERROR_MSG = "[ERROR] 이미 등록된 역 이름입니다. ";
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);
     }
 
     public static void addStation(Station station) {
+        if (stations.contains(station)) {
+            throw new IllegalArgumentException(DUPLICATION_ERROR_MSG);
+        }
         stations.add(station);
     }
 
