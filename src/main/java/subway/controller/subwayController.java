@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.domain.userInput.Main;
 import subway.view.Input;
 import subway.view.Output;
 
@@ -42,13 +43,11 @@ public class subwayController {
         for (String station : sections) {
             line.addSection(StationRepository.getStation(station));
         }
-
-
     }
 
     public void manageSubwayLines() {
-        for (Line line : LineRepository.lines()) {
-            System.out.println(line.getName() + line.toString());
-        }
+        output.printMain();
+        Main main = input.getMainChoice();
+        if(main != Main.QUIT) manageSubwayLines();
     }
 }
