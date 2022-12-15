@@ -4,18 +4,18 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
-import subway.domain.userInput.Main;
+import subway.domain.userInput.MainFunction;
 import subway.view.Input;
 import subway.view.Output;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class subwayController {
+public class MainController {
     private final Input input;
     private final Output output;
 
-    public subwayController(Input input, Output output) {
+    public MainController(Input input, Output output) {
         this.input = input;
         this.output = output;
         initStation();
@@ -46,10 +46,11 @@ public class subwayController {
     }
 
     public void manageSubwayLines() {
-        output.printMain();
-        Main main = input.getMainChoice();
-        if (main == Main.PRINT_LINES) printLines();
-        if (main != Main.QUIT) manageSubwayLines();
+        output.printFunctions(MainFunction.print());
+        MainFunction mainFunction = input.getMainChoice();
+        if (mainFunction == MainFunction.STATION) new StationController(input, output).manageStation();
+        if (mainFunction == MainFunction.PRINT_LINES) printLines();
+        if (mainFunction != MainFunction.QUIT) manageSubwayLines();
     }
 
     private void printLines() {

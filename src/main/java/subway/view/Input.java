@@ -1,7 +1,12 @@
 package subway.view;
 
-import subway.domain.userInput.Main;
+import subway.domain.userInput.MainFunction;
+import subway.domain.userInput.StationFunction;
 
 public interface Input {
-    Main getMainChoice();
+    MainFunction getMainChoice();
+
+    StationFunction getStationFunctionChoice();
+
+    StationFunction registerStation();
 }

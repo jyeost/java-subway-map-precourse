@@ -399,8 +399,8 @@ B. 돌아가기
 - Application의 패키지 구조는 변경하지 않는다.
 ```java
 public class Application {
-    public static void main(String[] args) {
-        ...
+    public static void mainFunction(String[] args) {
+        
     }
 }
 ```
