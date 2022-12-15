@@ -16,11 +16,9 @@ public class StationController {
     public void manageStation() {
         output.printFunctions(StationFunction.print());
         StationFunction stationFunction = input.getStationFunctionChoice();
-        if (stationFunction == StationFunction.REGISTER) stationFunction = registerStation();
+        if (stationFunction == StationFunction.REGISTER) stationFunction = input.registerStation();
+        if (stationFunction == StationFunction.DELETE) stationFunction = input.deleteStation();
+        if (stationFunction == StationFunction.INQUIRY) stationFunction = output.printAllStations();
         if (stationFunction != StationFunction.BACK) manageStation();
-    }
-
-    private StationFunction registerStation() {
-        return input.registerStation();
     }
 }

@@ -1,6 +1,8 @@
 package subway.view;
 
 import subway.domain.Line;
+import subway.domain.StationRepository;
+import subway.domain.userInput.StationFunction;
 
 import java.util.List;
 
@@ -17,6 +19,16 @@ public class OutputView implements Output {
             System.out.println("[INFO] " + line.getName() + System.lineSeparator() + "[INFO] ---");
             System.out.println(line.toString());
         }
+    }
+
+    @Override
+    public StationFunction printAllStations() {
+        if (StationRepository.stations().size() == 0) {
+            System.out.println("[ERROR] 등록된 역이 존재하지 않습니다.");
+            return StationFunction.INQUIRY;
+        }
+        System.out.println(StationRepository.printAllStations() + System.lineSeparator());
+        return StationFunction.BACK;
     }
 
 

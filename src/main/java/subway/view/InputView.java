@@ -48,4 +48,16 @@ public class InputView implements Input {
             return StationFunction.REGISTER;
         }
     }
+
+    @Override
+    public StationFunction deleteStation() {
+        System.out.println(System.lineSeparator() + "## 삭제할 역 이름을 입력하세요.");
+        if(StationRepository.deleteStation(scanner.nextLine())){
+            System.out.println("[INFO] 지하철 역이 삭제되었습니다." + System.lineSeparator());
+            return StationFunction.BACK;
+        }
+        System.out.println("[ERROR] 해당하는 역 이름이 없습니다.");
+        return StationFunction.DELETE;
+
+    }
 }

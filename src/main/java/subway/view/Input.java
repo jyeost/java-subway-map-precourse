@@ -9,4 +9,6 @@ public interface Input {
     StationFunction getStationFunctionChoice();
 
     StationFunction registerStation();
+
+    StationFunction deleteStation();
 }

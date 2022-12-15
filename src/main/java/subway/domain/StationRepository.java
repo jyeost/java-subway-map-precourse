@@ -31,4 +31,13 @@ public class StationRepository {
         }
         return null;
     }
+
+
+    public static String printAllStations() {
+        StringBuilder sb = new StringBuilder(System.lineSeparator() + "## 역 목록");
+        for (Station station : stations) {
+            sb.append(System.lineSeparator()).append("[INFO] ").append(station.getName());
+        }
+        return sb.toString();
+    }
 }
