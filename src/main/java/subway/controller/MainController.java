@@ -4,6 +4,7 @@ import subway.domain.Line;
 import subway.domain.LineRepository;
 import subway.domain.Station;
 import subway.domain.StationRepository;
+import subway.domain.userInput.LineFunction;
 import subway.domain.userInput.MainFunction;
 import subway.domain.userInput.StationFunction;
 import subway.view.Input;
@@ -50,6 +51,7 @@ public class MainController {
         output.printFunctions(MainFunction.print());
         MainFunction mainFunction = input.getMainChoice();
         if (mainFunction == MainFunction.STATION) manageStation();
+        if (mainFunction == MainFunction.LINE) manageLine();
         if (mainFunction == MainFunction.PRINT_LINES) output.printAllLines(LineRepository.lines());
         if (mainFunction != MainFunction.QUIT) manageSubwayLines();
     }
@@ -61,5 +63,12 @@ public class MainController {
         if (stationFunction == StationFunction.DELETE) stationFunction = input.deleteStation();
         if (stationFunction == StationFunction.INQUIRY) stationFunction = output.printAllStations();
         if (stationFunction != StationFunction.BACK) manageStation();
+    }
+
+    private void manageLine() {
+        output.printFunctions(LineFunction.print());
+        LineFunction lineFunction = input.getLineFunctionChoice();
+        if (lineFunction == LineFunction.REGISTER) lineFunction = input.registerLine();
+        if (lineFunction != LineFunction.BACK) manageLine();
     }
 }

@@ -20,4 +20,8 @@ public class LineRepository {
         return lines.removeIf(line -> Objects.equals(line.getName(), name));
     }
 
+    public static boolean isExistName(String name) {
+        return lines.stream().anyMatch(line -> Objects.equals(line.getName(), name));
+    }
+
 }
