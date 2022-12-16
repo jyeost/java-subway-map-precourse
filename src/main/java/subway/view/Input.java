@@ -2,6 +2,7 @@ package subway.view;
 
 import subway.domain.userInput.LineFunction;
 import subway.domain.userInput.MainFunction;
+import subway.domain.userInput.SectionFunction;
 import subway.domain.userInput.StationFunction;
 
 public interface Input {
@@ -18,4 +19,8 @@ public interface Input {
     LineFunction registerLine();
 
     LineFunction deleteLine();
+
+    SectionFunction getSectionFunctionChoice();
+
+    SectionFunction registerSection();
 }

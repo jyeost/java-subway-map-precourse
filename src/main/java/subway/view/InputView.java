@@ -6,6 +6,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.userInput.LineFunction;
 import subway.domain.userInput.MainFunction;
+import subway.domain.userInput.SectionFunction;
 import subway.domain.userInput.StationFunction;
 
 import java.util.Scanner;
@@ -80,7 +81,7 @@ public class InputView implements Input {
         try {
             System.out.println(System.lineSeparator() + "## 노선 이름을 입력하세요.");
             getLineInfo();
-            System.out.println("[INFO] 지하철 역이 등록되었습니다." + System.lineSeparator());
+            System.out.println("[INFO] 노선이 등록되었습니다." + System.lineSeparator());
             return LineFunction.BACK;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -90,7 +91,8 @@ public class InputView implements Input {
 
     private void getLineInfo() {
         String userInputLineName = scanner.nextLine();
-        if (LineRepository.isExistName(userInputLineName)) throw new IllegalArgumentException("이미 존재하는 노선 이름 입니다.");
+        if (LineRepository.isExistName(userInputLineName))
+            throw new IllegalArgumentException("[ERROR] 이미 존재하는 노선 이름 입니다.");
         Line line = new Line(userInputLineName);
         System.out.println(System.lineSeparator() + "## 등록할 노선의 상행 종점역 이름을 입력하세요.");
         line.addSection(StationRepository.getStation(scanner.nextLine()));
@@ -109,5 +111,37 @@ public class InputView implements Input {
         System.out.println("[ERROR] 해당하는 노선 이름이 없습니다.");
         return LineFunction.DELETE;
 
+    }
+
+    @Override
+    public SectionFunction getSectionFunctionChoice() {
+        System.out.println(CHOOSE_FUNCTION_MSG);
+        try {
+            return SectionFunction.validateUserChoice(scanner.nextLine());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getSectionFunctionChoice();
+        }
+    }
+
+    @Override
+    public SectionFunction registerSection() {
+        try {
+            System.out.println(System.lineSeparator() + "## 노선 이름을 입력하세요.");
+            getSectionInfo();
+            System.out.println("[INFO] 구간이 등록되었습니다." + System.lineSeparator());
+            return SectionFunction.BACK;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return SectionFunction.REGISTER;
+        }
+    }
+
+    private void getSectionInfo() {
+        Line line = LineRepository.getLine(scanner.nextLine());
+        System.out.println(System.lineSeparator() + "## 역 이름을 입력하세요.");
+        Station station = new Station(scanner.nextLine());
+        System.out.println(System.lineSeparator() + "## 순서를 입력하세요.");
+        line.addSection(station, scanner.nextLine());
     }
 }

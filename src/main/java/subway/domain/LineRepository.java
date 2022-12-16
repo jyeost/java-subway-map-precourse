@@ -32,4 +32,12 @@ public class LineRepository {
         return sb.toString();
     }
 
+    public static Line getLine(String lineName) {
+        for (Line line : lines) {
+            if (line.isEqualName(lineName))
+                return line;
+        }
+        throw new IllegalArgumentException("[ERROR] 존재하지 않는 노선 이름 입니다.");
+    }
+
 }

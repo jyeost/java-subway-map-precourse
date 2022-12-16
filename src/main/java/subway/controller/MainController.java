@@ -6,6 +6,7 @@ import subway.domain.Station;
 import subway.domain.StationRepository;
 import subway.domain.userInput.LineFunction;
 import subway.domain.userInput.MainFunction;
+import subway.domain.userInput.SectionFunction;
 import subway.domain.userInput.StationFunction;
 import subway.view.Input;
 import subway.view.Output;
@@ -52,6 +53,7 @@ public class MainController {
         MainFunction mainFunction = input.getMainChoice();
         if (mainFunction == MainFunction.STATION) manageStation();
         if (mainFunction == MainFunction.LINE) manageLine();
+        if (mainFunction == MainFunction.SECTION) manageSection();
         if (mainFunction == MainFunction.PRINT_LINES) output.printAllLinesAndStation(LineRepository.lines());
         if (mainFunction != MainFunction.QUIT) manageSubwayLines();
     }
@@ -72,5 +74,12 @@ public class MainController {
         if (lineFunction == LineFunction.DELETE) lineFunction = input.deleteLine();
         if (lineFunction == LineFunction.INQUIRY) lineFunction = output.printAllLines();
         if (lineFunction != LineFunction.BACK) manageLine();
+    }
+
+    private void manageSection() {
+        output.printFunctions(SectionFunction.print());
+        SectionFunction sectionFunction = input.getSectionFunctionChoice();
+        if (sectionFunction == SectionFunction.REGISTER) sectionFunction = input.registerSection();
+        if (sectionFunction != SectionFunction.BACK) manageSection();
     }
 }
