@@ -24,4 +24,12 @@ public class LineRepository {
         return lines.stream().anyMatch(line -> Objects.equals(line.getName(), name));
     }
 
+    public static String printAllLines() {
+        StringBuilder sb = new StringBuilder(System.lineSeparator() + "## 노선 목록");
+        for (Line line : lines) {
+            sb.append(System.lineSeparator()).append("[INFO] ").append(line.getName());
+        }
+        return sb.toString();
+    }
+
 }

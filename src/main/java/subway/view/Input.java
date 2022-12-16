@@ -16,4 +16,6 @@ public interface Input {
     LineFunction getLineFunctionChoice();
 
     LineFunction registerLine();
+
+    LineFunction deleteLine();
 }

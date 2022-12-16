@@ -52,7 +52,7 @@ public class MainController {
         MainFunction mainFunction = input.getMainChoice();
         if (mainFunction == MainFunction.STATION) manageStation();
         if (mainFunction == MainFunction.LINE) manageLine();
-        if (mainFunction == MainFunction.PRINT_LINES) output.printAllLines(LineRepository.lines());
+        if (mainFunction == MainFunction.PRINT_LINES) output.printAllLinesAndStation(LineRepository.lines());
         if (mainFunction != MainFunction.QUIT) manageSubwayLines();
     }
 
@@ -69,6 +69,8 @@ public class MainController {
         output.printFunctions(LineFunction.print());
         LineFunction lineFunction = input.getLineFunctionChoice();
         if (lineFunction == LineFunction.REGISTER) lineFunction = input.registerLine();
+        if (lineFunction == LineFunction.DELETE) lineFunction = input.deleteLine();
+        if (lineFunction == LineFunction.INQUIRY) lineFunction = output.printAllLines();
         if (lineFunction != LineFunction.BACK) manageLine();
     }
 }
